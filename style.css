@@ -33,9 +33,16 @@ body {
     margin: 0;
   }
 
-
+.scores{
+  display: flex;
+  justify-content: space-between;
+}
 
   #score {
+    color: #abb78a;
+  }
+
+  #cooldown_timer {
     color: #abb78a;
   }
 
