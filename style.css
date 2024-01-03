@@ -47,12 +47,12 @@ body {
   }
 
   .snake {
-    border: #5a5a5a 1px dotted;
+    border: #ffffff 1px dotted;
   }
   
-  .food {
-    background-color: #dedede;
-    border: #999 5px solid;
+  .apple {
+    background-color: #ff0000;
+    border: #cc1111 5px solid;
   }
   
   #logo {
