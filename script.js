@@ -3,6 +3,9 @@ const Game_board = document.getElementById("game_board");
 const Game_score = document.getElementById("score");
 const Game_cooldown_timer = document.getElementById("cooldown_timer");
 
+
+
+
 //define variables of game
 const gridSize = 20;
 let delay = 400;
@@ -29,6 +32,17 @@ function Draw_food(){
     }
 }
 
+function setPosition(element, position) {
+              element.style.gridColumn = position.x;
+              element.style.gridRow = position.y;
+            }
+
+function createGameElement(tag, className) {
+              const element = document.createElement(tag);
+              element.className = className;
+              return element;
+            }
+
 function Generate_food(){
     const x = Math.floor(Math.random() * gridSize) + 1;
     const y = Math.floor(Math.random() * gridSize) + 1;
@@ -37,3 +51,7 @@ function Generate_food(){
 
 function Food_snake_colision(){
 }
+
+
+let food = Generate_food();
+Draw_food();
