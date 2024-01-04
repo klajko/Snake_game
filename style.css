@@ -9,8 +9,8 @@ body {
   }
   
 .snake {
-  background-color: #ffffff;
-  border: #dfd6d6 5px dotted;
+  background-color: #00ff22;
+  border: #fc0000 2px dotted;
 }
 
 #game_board {

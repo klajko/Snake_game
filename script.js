@@ -9,7 +9,7 @@ const Enter = document.getElementById("enter")
 //define variables of game
 const gridSize = 20;
 let delay = 400;
-let snake = [{ x: 10, y: 10 }];
+let snake = { x: 10, y: 10 };
 createGameElement('div', 'snake');
 
 //drawing all things
