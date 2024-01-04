@@ -22,6 +22,12 @@ function Move_snake(){
 }
 
 function Draw_snake(){
+    if(true)
+    {
+        const Snake_head = createGameElement('div', 'snake');
+        setPosition(Snake_head, snake);
+        Game_board.appendChild(Snake_head)
+    }
 }
 
 function Draw_food(){
@@ -64,3 +70,4 @@ function Food_snake_colision(){
 Start_game() 
 let food = Generate_food();
 Draw_food();
+Draw_snake();

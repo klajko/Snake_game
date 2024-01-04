@@ -5,11 +5,12 @@ body {
     height: 100vh;
     margin: 0;
     font-family: 'Noto Serif Display', serif;
+    background-color: #414141;
   }
-
-  body,
+  
 .snake {
-  background-color: #414141;
+  background-color: #ffffff;
+  border: #dfd6d6 5px dotted;
 }
 
 #game_board {
@@ -46,9 +47,7 @@ body {
     color: #abb78a;
   }
 
-  .snake {
-    border: #ffffff 1px dotted;
-  }
+  
   
   .apple {
     background-color: #ff0000;
