@@ -2,7 +2,7 @@
 const Game_board = document.getElementById("game_board");
 const Game_score = document.getElementById("score");
 const Game_cooldown_timer = document.getElementById("cooldown_timer");
-
+const Enter = document.getElementById("enter")
 
 
 
@@ -49,9 +49,18 @@ function Generate_food(){
     return { x, y };
 }
 
-function Food_snake_colision(){
+function Start_game() {
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            Enter.style.display = 'none';
+        }
+    });
 }
 
 
+function Food_snake_colision(){
+}
+
+Start_game() 
 let food = Generate_food();
 Draw_food();
