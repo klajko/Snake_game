@@ -9,7 +9,8 @@ const Enter = document.getElementById("enter")
 //define variables of game
 const gridSize = 20;
 let delay = 400;
-let snake = { x: 10, y: 10 };
+let snake = [{ x: 10, y: 10 }];
+snake[1] = { x: 10, y: 12 }
 createGameElement('div', 'snake');
 
 //drawing all things
@@ -25,7 +26,7 @@ function Draw_snake(){
     if(true)
     {
         const Snake_head = createGameElement('div', 'snake');
-        setPosition(Snake_head, snake);
+        setPosition(Snake_head, snake[0]);
         Game_board.appendChild(Snake_head)
     }
 }
