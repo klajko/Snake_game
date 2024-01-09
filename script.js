@@ -64,7 +64,6 @@ function Start_game() {
     });
 }
 
-
 function Food_snake_colision(){
 }
 
