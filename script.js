@@ -10,9 +10,10 @@ const Enter = document.getElementById("enter")
 const gridSize = 20;
 let delay = 400;
 let snake = [{ x: 10, y: 10 }];
-snake[1] = { x: 10, y: 12 }
-createGameElement('div', 'snake');
 let gamestarted = false;
+let direction;
+let apples = 0;
+
 
 //drawing all things
 function Draw(){
@@ -21,7 +22,26 @@ function Draw(){
 }
 
 function Move_snake(){
+    const head = { ...snake[0] };
+    switch (direction) {
+        case 'up':
+          head.y--;
+          break;
+        case 'down':
+          head.y++;
+          break;
+        case 'left':
+          head.x--;
+          break;
+        case 'right':
+          head.x++;
+          break;
+      
 }
+snake.unshift(head);
+snake.pop();
+}
+
 
 function Draw_snake(){
     if(true)
@@ -63,16 +83,45 @@ function Food_snake_colision(){
 
 function start(){
     Enter.style.display = 'none';
-    Draw_food();
     Draw_snake();
+    gamestarted = true;
+    
 }
 
 function keypress(event){
     if(!gamestarted && event.key === 'Enter')
     {
         start();
+        gamestarted = true;
     }
+   
+    switch (event.key) {
+        case 'ArrowUp':
+          direction = 'up';
+          break;
+        case 'ArrowDown':
+          direction = 'down';
+          break;
+        case 'ArrowLeft':
+          direction = 'left';
+          break;
+        case 'ArrowRight':
+          direction = 'right';
+          break;
+        }
+        while(gamestarted && apples === 0 )
+        {
+        food = Generate_food();
+        Draw_food();
+        apples++;
+        }
+Move_snake();
+Draw_snake();
+return gamestarted;
 }
 
-let food = Generate_food();
+
+
 window.addEventListener('keydown', keypress);
+
+
