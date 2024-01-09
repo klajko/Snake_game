@@ -115,7 +115,7 @@ function keypress(event){
         Draw_food();
         apples++;
         }
-        
+        Game_board.innerHTML= ""
         Draw_food()
 Move_snake();
 Draw_snake();
