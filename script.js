@@ -12,6 +12,7 @@ let delay = 400;
 let snake = [{ x: 10, y: 10 }];
 snake[1] = { x: 10, y: 12 }
 createGameElement('div', 'snake');
+let gamestarted = false;
 
 //drawing all things
 function Draw(){
@@ -33,6 +34,7 @@ function Draw_snake(){
 
 function Draw_food(){
     if (true){
+        
         const Food_element = createGameElement('div', 'apple');
         setPosition(Food_element, food);
         Game_board.appendChild(Food_element);
@@ -56,18 +58,21 @@ function Generate_food(){
     return { x, y };
 }
 
-function Start_game() {
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            Enter.style.display = 'none';
-        }
-    });
-}
-
 function Food_snake_colision(){
 }
 
-Start_game() 
+function start(){
+    Enter.style.display = 'none';
+    Draw_food();
+    Draw_snake();
+}
+
+function keypress(event){
+    if(!gamestarted && event.key === 'Enter')
+    {
+        start();
+    }
+}
+
 let food = Generate_food();
-Draw_food();
-Draw_snake();
+window.addEventListener('keydown', keypress);
