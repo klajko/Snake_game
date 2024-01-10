@@ -4,8 +4,6 @@ const Game_score = document.getElementById("score");
 const Game_cooldown_timer = document.getElementById("cooldown_timer");
 const Enter = document.getElementById("enter")
 
-
-
 //define variables of game
 const gridSize = 20;
 let delay = 400;
@@ -13,7 +11,6 @@ let snake = [{ x: 10, y: 10 }];
 let gamestarted = false;
 let direction;
 let apples = 0;
-
 
 //drawing all things
 function Draw(){
@@ -40,7 +37,6 @@ function Move_snake(){
 	snake.unshift(head);
 	snake.pop();
 }
-
 
 function Draw_snake() {
     if(true) {
@@ -81,8 +77,7 @@ function Food_snake_colision(){
 function start(){
     Enter.style.display = 'none';
     Draw_snake();
-    gamestarted = true;
-    
+    gamestarted = true;  
 }
 
 function keypress(event){
@@ -105,20 +100,18 @@ function keypress(event){
           	direction = 'right';
           	break;
     }
+
     while(gamestarted && apples === 0 ) {
         food = Generate_food();
         Draw_food();
         apples++;
     }
-    Game_board.innerHTML= ""
-    Draw_food()
+
+    Game_board.innerHTML= "";
+    Draw_food();
 	Move_snake();
 	Draw_snake();
 	return gamestarted;
 }
 
-
-
 window.addEventListener('keydown', keypress);
-
-
