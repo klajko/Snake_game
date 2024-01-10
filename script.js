@@ -25,36 +25,33 @@ function Move_snake(){
     const head = { ...snake[0] };
     switch (direction) {
         case 'up':
-          head.y--;
-          break;
+        	head.y--;
+          	break;
         case 'down':
-          head.y++;
-          break;
+          	head.y++;
+          	break;
         case 'left':
-          head.x--;
-          break;
+          	head.x--;
+          	break;
         case 'right':
-          head.x++;
-          break;
-      
-}
-snake.unshift(head);
-snake.pop();
+          	head.x++;
+          	break;  
+	}
+	snake.unshift(head);
+	snake.pop();
 }
 
 
-function Draw_snake(){
-    if(true)
-    {
+function Draw_snake() {
+    if(true) {
         const Snake_head = createGameElement('div', 'snake');
         setPosition(Snake_head, snake[0]);
         Game_board.appendChild(Snake_head)
     }
 }
 
-function Draw_food(){
-    if (true){
-        
+function Draw_food() {
+    if (true) {
         const Food_element = createGameElement('div', 'apple');
         setPosition(Food_element, food);
         Game_board.appendChild(Food_element);
@@ -62,15 +59,15 @@ function Draw_food(){
 }
 
 function setPosition(element, position) {
-              element.style.gridColumn = position.x;
-              element.style.gridRow = position.y;
-            }
+    element.style.gridColumn = position.x;
+    element.style.gridRow = position.y;
+}
 
 function createGameElement(tag, className) {
-              const element = document.createElement(tag);
-              element.className = className;
-              return element;
-            }
+    const element = document.createElement(tag);
+    element.className = className;
+    return element;
+}
 
 function Generate_food(){
     const x = Math.floor(Math.random() * gridSize) + 1;
@@ -89,37 +86,35 @@ function start(){
 }
 
 function keypress(event){
-    if(!gamestarted && event.key === 'Enter')
-    {
+    if(!gamestarted && event.key === 'Enter') {
         start();
         gamestarted = true;
     }
    
     switch (event.key) {
         case 'ArrowUp':
-          direction = 'up';
-          break;
+            direction = 'up';
+            break;
         case 'ArrowDown':
-          direction = 'down';
-          break;
+          	direction = 'down';
+          	break;
         case 'ArrowLeft':
-          direction = 'left';
-          break;
+          	direction = 'left';
+          	break;
         case 'ArrowRight':
-          direction = 'right';
-          break;
-        }
-        while(gamestarted && apples === 0 )
-        {
+          	direction = 'right';
+          	break;
+    }
+    while(gamestarted && apples === 0 ) {
         food = Generate_food();
         Draw_food();
         apples++;
-        }
-        Game_board.innerHTML= ""
-        Draw_food()
-Move_snake();
-Draw_snake();
-return gamestarted;
+    }
+    Game_board.innerHTML= ""
+    Draw_food()
+	Move_snake();
+	Draw_snake();
+	return gamestarted;
 }
 
 
