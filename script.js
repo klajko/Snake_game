@@ -35,15 +35,20 @@ function Move_snake(){
           	break;  
 	}
 	snake.unshift(head);
-	snake.pop();
+  if(head.x === food.x && head.y === food.y){
+  food = generateFood();
+  
 }
-
+else {
+  snake.pop();
+}
+}
 function Draw_snake() {
-    if(true) {
-        const Snake_head = createGameElement('div', 'snake');
-        setPosition(Snake_head, snake[0]);
-        Game_board.appendChild(Snake_head)
-    }
+  snake.forEach((snake) => {
+    const snakeElement = createGameElement('div', 'snake');
+    setPosition(snakeElement, snake);
+    board.appendChild(snakeElement);
+  });
 }
 
 function Draw_food() {
@@ -107,7 +112,7 @@ function keypress(event){
         apples++;
     }
 
-    Game_board.innerHTML= "";
+   
     Draw_food();
 	Move_snake();
 	Draw_snake();
