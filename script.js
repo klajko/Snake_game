@@ -8,41 +8,110 @@ const Enter = document.getElementById("enter")
 const gridSize = 20;
 let delay = 400;
 let snake = [{ x: 10, y: 10 }];
-let food = generateFood();
+let gamestarted = false;
+let direction;
+let apples = 0;
 
-//draws each segment of snake
+//drawing all things
+function Draw(){
+    Game_board.innerHTML = '';
+    Draw_snake()
+}
+
+function Move_snake(){
+    const head = { ...snake[0] };
+    switch (direction) {
+        case 'up':
+        	head.y--;
+          	break;
+        case 'down':
+          	head.y++;
+          	break;
+        case 'left':
+          	head.x--;
+          	break;
+        case 'right':
+          	head.x++;
+          	break;  
+	}
+	snake.unshift(head);
+	snake.pop();
+}
+
 function Draw_snake() {
-  snake.forEach((snake) => {
-    const snakeElement = createGameElement('div', 'snake');
-    setPosition(snakeElement, snake);
-    board.appendChild(snakeElement);
-  });
+    if(true) {
+        const Snake_head = createGameElement('div', 'snake');
+        setPosition(Snake_head, snake[0]);
+        Game_board.appendChild(Snake_head)
+    }
 }
 
-//set position of game element
+function Draw_food() {
+    if (true) {
+        const Food_element = createGameElement('div', 'apple');
+        setPosition(Food_element, food);
+        Game_board.appendChild(Food_element);
+    }
+}
+
 function setPosition(element, position) {
-  element.style.gridColumn = position.x;
-  element.style.gridRow = position.y;
+    element.style.gridColumn = position.x;
+    element.style.gridRow = position.y;
 }
 
-//creates **div** individual game element
 function createGameElement(tag, className) {
-  const element = document.createElement(tag);
-  element.className = className;
-  return element;
+    const element = document.createElement(tag);
+    element.className = className;
+    return element;
 }
 
-//generates position of food
 function Generate_food(){
-  const x = Math.floor(Math.random() * gridSize) + 1;
-  const y = Math.floor(Math.random() * gridSize) + 1;
-  return { x, y };
+    const x = Math.floor(Math.random() * gridSize) + 1;
+    const y = Math.floor(Math.random() * gridSize) + 1;
+    return { x, y };
 }
-//draws food
-  function Draw_food() {
-  const Food_element = createGameElement('div', 'apple');
-  setPosition(Food_element, food);
-  Game_board.appendChild(Food_element);
+
+function Food_snake_colision(){
+}
+
+function start(){
+    Enter.style.display = 'none';
+    Draw_snake();
+    gamestarted = true;  
+}
+
+function keypress(event){
+    if(!gamestarted && event.key === 'Enter') {
+        start();
+        gamestarted = true;
+    }
+   
+    switch (event.key) {
+        case 'ArrowUp':
+            direction = 'up';
+            break;
+        case 'ArrowDown':
+          	direction = 'down';
+          	break;
+        case 'ArrowLeft':
+          	direction = 'left';
+          	break;
+        case 'ArrowRight':
+          	direction = 'right';
+          	break;
     }
 
+    while(gamestarted && apples === 0 ) {
+        food = Generate_food();
+        Draw_food();
+        apples++;
+    }
 
+    Game_board.innerHTML= "";
+    Draw_food();
+	Move_snake();
+	Draw_snake();
+	return gamestarted;
+}
+
+window.addEventListener('keydown', keypress);
