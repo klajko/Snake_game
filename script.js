@@ -9,6 +9,7 @@ const gridSize = 20;
 let delay = 100;
 let snake = [{ x: 10, y: 10 }];
 let gamestarted = false;
+let gameover = false;
 let direction;
 let apples = 0;
 
@@ -19,7 +20,7 @@ function Draw(){
 }
 
 function Move_snake(){
-    const head = { ...snake[0] };
+    const head = {...snake[0]};
     switch (direction) {
         case 'up':
         	head.y--;
@@ -35,7 +36,7 @@ function Move_snake(){
           	break;  
 	}
 	snake.unshift(head);
-	snake.pop();
+	
 }
 
 function Draw_snake() {
@@ -70,9 +71,15 @@ function Generate_food(){
     const y = Math.floor(Math.random() * gridSize) + 1;
     return { x, y };
 }
-
-function Food_snake_colision(){
-}
+//check for wall colison
+function Wall_snake_colision(){
+    const head = snake[0];
+if(head.x < 1 || head.x > gridSize || head.y < 1 || head.y > gridSize){
+over.style.visibility = 'visible';
+gamestarted= false;
+gameover= true;
+return gameover;
+}}
 
 function start(){
     Enter.style.display = 'none';
@@ -80,27 +87,25 @@ function start(){
     gamestarted = true;  
 }
 
-//toto doriesit JABLKA
-    while(gamestarted && apples === 0 ) {
-        food = Generate_food();
-        Draw_food();
-        apples++;
-    }
-//toto doriest JABLKA
-
-
-
-
-
+//code to execute
 window.addEventListener('keydown', keypress);
+if(!gameover)
+    {
+        over.style.visibility = 'hidden';
+    }
 
-// ... (Your existing code)
 
 // Add a game loop
 function gameLoop() {
     if (gamestarted) {
         Move_snake();
+        Wall_snake_colision();
+        if(!gameover)
+        {
         Draw();
+        Draw_food();
+        }
+
     }
 }
 
@@ -129,4 +134,10 @@ function keypress(event) {
             direction = 'right';
             break;
     }
+    while(gamestarted && apples === 0 ) {
+        food = Generate_food();
+        apples++;
+    }
+    
+    
 }
