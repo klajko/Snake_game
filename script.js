@@ -6,7 +6,7 @@ const Enter = document.getElementById("enter")
 
 //define variables of game
 const gridSize = 20;
-let delay = 400;
+let delay = 100;
 let snake = [{ x: 10, y: 10 }];
 let gamestarted = false;
 let direction;
@@ -80,38 +80,53 @@ function start(){
     gamestarted = true;  
 }
 
-function keypress(event){
-    if(!gamestarted && event.key === 'Enter') {
-        start();
-        gamestarted = true;
-    }
-   
-    switch (event.key) {
-        case 'ArrowUp':
-            direction = 'up';
-            break;
-        case 'ArrowDown':
-          	direction = 'down';
-          	break;
-        case 'ArrowLeft':
-          	direction = 'left';
-          	break;
-        case 'ArrowRight':
-          	direction = 'right';
-          	break;
-    }
-
+//toto doriesit JABLKA
     while(gamestarted && apples === 0 ) {
         food = Generate_food();
         Draw_food();
         apples++;
     }
+//toto doriest JABLKA
 
-    Game_board.innerHTML= "";
-    Draw_food();
-	Move_snake();
-	Draw_snake();
-	return gamestarted;
-}
+
+
+
 
 window.addEventListener('keydown', keypress);
+
+// ... (Your existing code)
+
+// Add a game loop
+function gameLoop() {
+    if (gamestarted) {
+        Move_snake();
+        Draw();
+    }
+}
+
+// Set up the game loop with a specified delay
+const gameInterval = setInterval(gameLoop, delay);
+
+// Modify the keypress event listener
+function keypress(event) {
+    if (!gamestarted && event.key === 'Enter') {
+        start();
+        gamestarted = true;
+    }
+
+    // Change direction immediately
+    switch (event.key) {
+        case 'ArrowUp':
+            direction = 'up';
+            break;
+        case 'ArrowDown':
+            direction = 'down';
+            break;
+        case 'ArrowLeft':
+            direction = 'left';
+            break;
+        case 'ArrowRight':
+            direction = 'right';
+            break;
+    }
+}
