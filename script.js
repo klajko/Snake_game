@@ -12,12 +12,13 @@ let gamestarted = false;
 let gameover = false;
 let direction;
 let apples = 0;
-let x = 0;
+let score = 0;
 
 //drawing all things
 function Draw(){
     Game_board.innerHTML = '';
     Draw_snake()
+    Game_score.innerHTML= score;
 }
 
 function Move_snake(){
@@ -90,6 +91,7 @@ function Apple_snake_colision(){
     const head = snake[0];
 if(head.x === food.x && head.y === food.y){
         food = Generate_food();
+        score++;
 }
 else{
     snake.pop();
