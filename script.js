@@ -12,6 +12,7 @@ let gamestarted = false;
 let gameover = false;
 let direction;
 let apples = 0;
+let x = 0;
 
 //drawing all things
 function Draw(){
@@ -41,10 +42,12 @@ function Move_snake(){
 
 function Draw_snake() {
     if(true) {
+        snake.forEach((snake) => {
         const Snake_head = createGameElement('div', 'snake');
-        setPosition(Snake_head, snake[0]);
+        setPosition(Snake_head, snake);
         Game_board.appendChild(Snake_head)
-    }
+    });
+}
 }
 
 function Draw_food() {
@@ -79,7 +82,21 @@ over.style.visibility = 'visible';
 gamestarted= false;
 gameover= true;
 return gameover;
-}}
+}
+}
+
+function Apple_snake_colision(){
+    const head = snake[0];
+if(head.x === food.x && head.y === food.y){
+        apples--;
+        food = Generate_food();
+}
+else{
+    snake.pop();
+}
+}
+
+
 
 function start(){
     Enter.style.display = 'none';
@@ -99,13 +116,14 @@ if(!gameover)
 function gameLoop() {
     if (gamestarted) {
         Move_snake();
+        Apple_snake_colision();
         Wall_snake_colision();
         if(!gameover)
         {
         Draw();
         Draw_food();
         }
-
+        console.log(snake.length);
     }
 }
 
@@ -134,10 +152,9 @@ function keypress(event) {
             direction = 'right';
             break;
     }
-    while(gamestarted && apples === 0 ) {
+    if(gamestarted && apples === 0 && x === 0) {
         food = Generate_food();
         apples++;
+        x++;
     }
-    
-    
 }
