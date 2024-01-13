@@ -88,7 +88,6 @@ return gameover;
 function Apple_snake_colision(){
     const head = snake[0];
 if(head.x === food.x && head.y === food.y){
-        apples--;
         food = Generate_food();
 }
 else{
@@ -152,9 +151,8 @@ function keypress(event) {
             direction = 'right';
             break;
     }
-    if(gamestarted && apples === 0 && x === 0) {
+    if(gamestarted && apples === 0) {
         food = Generate_food();
         apples++;
-        x++;
     }
 }
