@@ -78,6 +78,7 @@ function Generate_food(){
 function Wall_snake_colision(){
     const head = snake[0];
 if(head.x < 1 || head.x > gridSize || head.y < 1 || head.y > gridSize){
+    Game_board.innerHTML = '';
 over.style.visibility = 'visible';
 gamestarted= false;
 gameover= true;
@@ -104,9 +105,11 @@ function start(){
 }
 
 //code to execute
-window.addEventListener('keydown', keypress);
+
+
 if(!gameover)
     {
+        window.addEventListener('keydown', keypress);
         over.style.visibility = 'hidden';
     }
 
