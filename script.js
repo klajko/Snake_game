@@ -71,11 +71,21 @@ function createGameElement(tag, className) {
     return element;
 }
 
-function Generate_food(){
-    const x = Math.floor(Math.random() * gridSize) + 1;
-    const y = Math.floor(Math.random() * gridSize) + 1;
-    return { x, y };
+function Generate_food() {
+    let newFood;
+    do {
+        const x = Math.floor(Math.random() * gridSize) + 1;
+        const y = Math.floor(Math.random() * gridSize) + 1;
+        newFood = { x, y };
+    } while (isFoodOnSnake(newFood));
+
+    return newFood;
 }
+
+function isFoodOnSnake(food) {
+    return snake.some((segment) => segment.x === food.x && segment.y === food.y);
+}
+
 //check for wall colison
 function Wall_snake_colision(){
     const head = snake[0];
@@ -91,7 +101,7 @@ return gameover;
 function snake_snake_colision() {
     const head = snake[0];
     if(snake.length > 1){
-    for (let z = 1; z < snake.length; z++) {
+    for (let z = 3; z < snake.length; z++) {
         if (head.x === snake[z].x && head.y === snake[z].y) {
             Game_board.innerHTML = '';
             Game_over.style.visibility = 'visible';
