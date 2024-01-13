@@ -3,10 +3,11 @@ const Game_board = document.getElementById("game_board");
 const Game_score = document.getElementById("score");
 const Game_cooldown_timer = document.getElementById("cooldown_timer");
 const Enter = document.getElementById("enter")
+const Game_over = document.getElementById("over")
 
 //define variables of game
 const gridSize = 20;
-let delay = 100;
+let delay = 200;
 let snake = [{ x: 10, y: 10 }];
 let gamestarted = false;
 let gameover = false;
@@ -20,7 +21,7 @@ function Draw(){
     Draw_snake()
     Game_score.innerHTML= score;
 }
-
+//calculates location of head
 function Move_snake(){
     const head = {...snake[0]};
     switch (direction) {
@@ -79,23 +80,50 @@ function Generate_food(){
 function Wall_snake_colision(){
     const head = snake[0];
 if(head.x < 1 || head.x > gridSize || head.y < 1 || head.y > gridSize){
-    Game_board.innerHTML = '';
-over.style.visibility = 'visible';
+Game_board.innerHTML = '';
+Game_over.style.visibility = 'visible';
 gamestarted= false;
 gameover= true;
 return gameover;
 }
 }
 
-function Apple_snake_colision(){
+function snake_snake_colision() {
     const head = snake[0];
-if(head.x === food.x && head.y === food.y){
+    if(snake.length > 1){
+    for (let z = 1; z < snake.length; z++) {
+        if (head.x === snake[z].x && head.y === snake[z].y) {
+            Game_board.innerHTML = '';
+            Game_over.style.visibility = 'visible';
+            gamestarted = false;
+            gameover = true;
+            return gameover;
+        }
+    }
+}
+}
+
+function Apple_snake_colision() {
+    const head = snake[0];
+    if (head.x === food.x && head.y === food.y) {
         food = Generate_food();
         score++;
-}
-else{
-    snake.pop();
-}
+
+        if (score % 5 === 0 && delay > 100) {
+            delay -= 5;
+
+            // Clear the existing interval
+            clearInterval(gameInterval);
+
+            // Set up a new interval with the updated delay
+            gameInterval = setInterval(gameLoop, delay);
+        }
+
+        console.log(score);
+        console.log(delay);
+    } else {
+        snake.pop();
+    }
 }
 
 
@@ -112,27 +140,27 @@ function start(){
 if(!gameover)
     {
         window.addEventListener('keydown', keypress);
-        over.style.visibility = 'hidden';
+        Game_over.style.visibility = 'hidden';
     }
+
 
 
 // Add a game loop
 function gameLoop() {
     if (gamestarted) {
         Move_snake();
-        Apple_snake_colision();
         Wall_snake_colision();
-        if(!gameover)
-        {
+        Apple_snake_colision();
+        snake_snake_colision(); 
+        if(!gameover){
         Draw();
         Draw_food();
         }
-        console.log(snake.length);
     }
 }
 
 // Set up the game loop with a specified delay
-const gameInterval = setInterval(gameLoop, delay);
+let gameInterval = setInterval(gameLoop, delay);
 
 // Modify the keypress event listener
 function keypress(event) {
