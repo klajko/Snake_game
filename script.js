@@ -4,6 +4,7 @@ const Game_score = document.getElementById("score");
 const Game_cooldown_timer = document.getElementById("cooldown_timer");
 const Enter = document.getElementById("enter")
 const Game_over = document.getElementById("over")
+const sound = document.getElementById("myAudio"); 
 
 //define variables of game
 const gridSize = 20;
@@ -118,6 +119,7 @@ function Apple_snake_colision() {
     if (head.x === food.x && head.y === food.y) {
         food = Generate_food();
         score++;
+        sound.play();
 
         if (score % 5 === 0 && delay > 100) {
             delay -= 5;
