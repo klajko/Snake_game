@@ -5,7 +5,9 @@ const Game_cooldown_timer = document.getElementById("cooldown_timer");
 const Enter = document.getElementById("enter")
 const Game_over = document.getElementById("over")
 const sound = document.getElementById("myAudio"); 
-
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 //define variables of game
 const gridSize = 20;
 let delay = 200;
@@ -93,6 +95,7 @@ function Wall_snake_colision(){
 if(head.x < 1 || head.x > gridSize || head.y < 1 || head.y > gridSize){
 Game_board.innerHTML = '';
 Game_over.style.visibility = 'visible';
+game_over.play();
 gamestarted= false;
 gameover= true;
 return gameover;
@@ -106,6 +109,7 @@ function snake_snake_colision() {
         if (head.x === snake[z].x && head.y === snake[z].y) {
             Game_board.innerHTML = '';
             Game_over.style.visibility = 'visible';
+            game_over.play();
             gamestarted = false;
             gameover = true;
             return gameover;
