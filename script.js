@@ -10,13 +10,15 @@ function sleep(ms) {
   }
 //define variables of game
 const gridSize = 20;
-let delay = 200;
+let delay = 400;
 let snake = [{ x: 10, y: 10 }];
 let gamestarted = false;
 let gameover = false;
 let direction;
 let apples = 0;
 let score = 0;
+const game_delay = 400;
+let game_restarted = false;
 
 //drawing all things
 function Draw(){
@@ -95,6 +97,7 @@ function Wall_snake_colision(){
 if(head.x < 1 || head.x > gridSize || head.y < 1 || head.y > gridSize){
 Game_board.innerHTML = '';
 Game_over.style.visibility = 'visible';
+reset.style.visibility = 'visible';
 game_over.play();
 gamestarted= false;
 gameover= true;
@@ -109,6 +112,7 @@ function snake_snake_colision() {
         if (head.x === snake[z].x && head.y === snake[z].y) {
             Game_board.innerHTML = '';
             Game_over.style.visibility = 'visible';
+            reset.style.visibility = 'visible';
             game_over.play();
             gamestarted = false;
             gameover = true;
@@ -152,6 +156,7 @@ if(!gameover)
 {
     window.addEventListener('keydown', keypress);
     Game_over.style.visibility = 'hidden';
+    reset.style.visibility = 'hidden';
 }
 
 // Add a game loop
@@ -173,7 +178,7 @@ let gameInterval = setInterval(gameLoop, delay);
 
 // Modify the keypress event listener
 function keypress(event) {
-    if (!gamestarted && event.key === 'Enter') {
+    if (!gamestarted && event.key === 'Enter' && !game_restarted) {
         start();
         gamestarted = true;
     }
@@ -216,10 +221,32 @@ function keypress(event) {
         }
     
     }
-    if(gamestarted && apples === 0) {
+    if(gamestarted && apples === 0 && !game_restarted) {
         food = Generate_food();
         apples++;
     }
 }
+
+
+reset.style.visibility = 'hidden'; 
+function resetGame() {
+    snake = [{ x: 10, y: 10 }];
+    gamestarted = false;
+    gameover = false;
+    direction = undefined;
+    apples = 0;
+    score = 0;
+
+    Game_over.style.visibility = 'hidden';
+    reset.style.visibility = 'hidden';
+    Enter.style.display = 'block';
+    Game_board.innerHTML = '';
+    clearInterval(gameInterval);
+    gameInterval = setInterval(gameLoop, game_delay);
+    gamestarted = true;
+    game_restarted = true;
+    start();
+}
+reset.onclick = resetGame;
 
 
