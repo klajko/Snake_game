@@ -142,24 +142,17 @@ function Apple_snake_colision() {
     }
 }
 
-
-
 function start(){
     Enter.style.display = 'none';
     Draw_snake();
     gamestarted = true;  
 }
 
-//code to execute
-
-
 if(!gameover)
-    {
-        window.addEventListener('keydown', keypress);
-        Game_over.style.visibility = 'hidden';
-    }
-
-
+{
+    window.addEventListener('keydown', keypress);
+    Game_over.style.visibility = 'hidden';
+}
 
 // Add a game loop
 function gameLoop() {
@@ -188,17 +181,26 @@ function keypress(event) {
     // Change direction immediately
     switch (event.key) {
         case 'ArrowUp':
-            direction = 'up';
+            if (direction !== 'down') {
+                direction = 'up';
+            }
             break;
         case 'ArrowDown':
-            direction = 'down';
+            if (direction !== 'up') {
+                direction = 'down';
+            }
             break;
         case 'ArrowLeft':
-            direction = 'left';
+            if (direction !== 'right') {
+                direction = 'left';
+            }
             break;
         case 'ArrowRight':
-            direction = 'right';
+            if (direction !== 'left') {
+                direction = 'right';
+            }
             break;
+    
     }
     if(gamestarted && apples === 0) {
         food = Generate_food();
