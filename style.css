@@ -33,10 +33,22 @@ body {
     padding: 30px;
     margin: 0;
   }
+  #reset {
+    position: absolute;
+    font-size: 20px;
+    font-weight: 900;
+    top: 60%;
+    color: rgb(0, 0, 0);
+    background-color:#acacac ;
+    width: 50x;
+    text-align: center;
+    padding: 30px;
+    margin: 0;
+  }
 
   #over {
     position: absolute;
-    top: 47%;
+    top: 40%;
     color: red;
     width: 300px;
     text-align: center;

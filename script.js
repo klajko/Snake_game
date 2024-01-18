@@ -1,10 +1,10 @@
 //define basic elements of HTML
 const Game_board = document.getElementById("game_board");
 const Game_score = document.getElementById("score");
-const Game_cooldown_timer = document.getElementById("cooldown_timer");
 const Enter = document.getElementById("enter")
 const Game_over = document.getElementById("over")
 const sound = document.getElementById("myAudio"); 
+const reset = document.getElementById("reset"); 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
@@ -179,27 +179,41 @@ function keypress(event) {
     }
 
     // Change direction immediately
+    {
     switch (event.key) {
         case 'ArrowUp':
-            if (direction !== 'down') {
+            if (direction !== 'down' && snake.length !== 1) {
+                direction = 'up';
+            }
+            else if(snake.length === 1){
                 direction = 'up';
             }
             break;
         case 'ArrowDown':
-            if (direction !== 'up') {
+            if (direction !== 'up'&& snake.length !== 1) {
+                direction = 'down';
+            }
+            else if(snake.length === 1){
                 direction = 'down';
             }
             break;
         case 'ArrowLeft':
-            if (direction !== 'right') {
+            if (direction !== 'right'&& snake.length !== 1) {
+                direction = 'left';
+            }
+            else if(snake.length === 1){
                 direction = 'left';
             }
             break;
         case 'ArrowRight':
-            if (direction !== 'left') {
+            if (direction !== 'left'&& snake.length !== 1) {
+                direction = 'right';
+            }
+            else if(snake.length === 1){
                 direction = 'right';
             }
             break;
+        }
     
     }
     if(gamestarted && apples === 0) {
@@ -207,3 +221,5 @@ function keypress(event) {
         apples++;
     }
 }
+
+
