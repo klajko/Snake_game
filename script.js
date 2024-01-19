@@ -10,7 +10,7 @@ function sleep(ms) {
   }
 //define variables of game
 const gridSize = 20;
-let delay = 400;
+let delay = 200;
 let snake = [{ x: 10, y: 10 }];
 let gamestarted = false;
 let gameover = false;
@@ -132,10 +132,10 @@ function Apple_snake_colision() {
         if (score % 5 === 0 && delay > 100) {
             delay -= 5;
 
-            // Clear the existing interval
+            //clear the existing interval
             clearInterval(gameInterval);
 
-            // Set up a new interval with the updated delay
+            //set up a new interval with the updated delay
             gameInterval = setInterval(gameLoop, delay);
         }
 
@@ -159,7 +159,7 @@ if(!gameover)
     reset.style.visibility = 'hidden';
 }
 
-// Add a game loop
+//add a game loop
 function gameLoop() {
     if (gamestarted) {
         Move_snake();
@@ -173,17 +173,17 @@ function gameLoop() {
     }
 }
 
-// Set up the game loop with a specified delay
+//set up the game loop with a specified delay
 let gameInterval = setInterval(gameLoop, delay);
 
-// Modify the keypress event listener
+//modify the keypress event listener
 function keypress(event) {
     if (!gamestarted && event.key === 'Enter' && !game_restarted) {
         start();
         gamestarted = true;
     }
 
-    // Change direction immediately
+    //change direction immediately
     {
     switch (event.key) {
         case 'ArrowUp':
@@ -227,8 +227,9 @@ function keypress(event) {
     }
 }
 
-
 reset.style.visibility = 'hidden'; 
+
+//reset game
 function resetGame() {
     snake = [{ x: 10, y: 10 }];
     gamestarted = false;
@@ -248,5 +249,3 @@ function resetGame() {
     start();
 }
 reset.onclick = resetGame;
-
-
