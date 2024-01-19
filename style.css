@@ -5,7 +5,7 @@ body {
     height: 100vh;
     margin: 0;
     font-family: 'Noto Serif Display', serif;
-    background-color: #414141;
+    background-color: #000000;
   }
   
 .snake {
@@ -21,7 +21,7 @@ body {
   }
 
   .game_border {
-    border: #595f43 solid 20px;
+    border: #869c38 solid 20px;
   }
 
   #enter {
@@ -35,15 +35,20 @@ body {
   }
   #reset {
     position: absolute;
-    font-size: 20px;
+    font-size: 25px;
+    border: none;
     font-weight: 900;
     top: 60%;
     color: rgb(0, 0, 0);
-    background-color:#acacac ;
+    background-color:#767676 ;
     width: 50x;
     text-align: center;
     padding: 30px;
     margin: 0;
+  }
+  #reset:hover{
+    background-color:red ;
+   cursor: not-allowed;
   }
 
   #over {
@@ -62,22 +67,14 @@ body {
   display: flex;
   justify-content: space-between;
 }
-
   #score {
-    color: #abb78a;
+    color :#1d95e0 ;
   }
-
-  #cooldown_timer {
-    color: #abb78a;
-  }
-
-  
   
   .apple {
     background-color: #ff0000;
     border: #cc1111 5px solid;
   }
-  
   #logo {
     position: absolute;
   }

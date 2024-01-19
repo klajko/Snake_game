@@ -17,7 +17,7 @@ let gameover = false;
 let direction;
 let apples = 0;
 let score = 0;
-const game_delay = 400;
+const game_delay = 200;
 let game_restarted = false;
 
 //drawing all things
@@ -96,6 +96,7 @@ function Wall_snake_colision(){
     const head = snake[0];
 if(head.x < 1 || head.x > gridSize || head.y < 1 || head.y > gridSize){
 Game_board.innerHTML = '';
+Game_over.innerHTML='Game over\n' + score;
 Game_over.style.visibility = 'visible';
 reset.style.visibility = 'visible';
 game_over.play();
@@ -111,6 +112,7 @@ function snake_snake_colision() {
     for (let z = 3; z < snake.length; z++) {
         if (head.x === snake[z].x && head.y === snake[z].y) {
             Game_board.innerHTML = '';
+            Game_over.innerHTML='Game over\n' + score;
             Game_over.style.visibility = 'visible';
             reset.style.visibility = 'visible';
             game_over.play();
@@ -132,10 +134,10 @@ function Apple_snake_colision() {
         if (score % 5 === 0 && delay > 100) {
             delay -= 5;
 
-            //clear the existing interval
+            // Clear the existing interval
             clearInterval(gameInterval);
 
-            //set up a new interval with the updated delay
+            // Set up a new interval with the updated delay
             gameInterval = setInterval(gameLoop, delay);
         }
 
@@ -159,7 +161,7 @@ if(!gameover)
     reset.style.visibility = 'hidden';
 }
 
-//add a game loop
+// Add a game loop
 function gameLoop() {
     if (gamestarted) {
         Move_snake();
@@ -173,17 +175,17 @@ function gameLoop() {
     }
 }
 
-//set up the game loop with a specified delay
+// Set up the game loop with a specified delay
 let gameInterval = setInterval(gameLoop, delay);
 
-//modify the keypress event listener
+// Modify the keypress event listener
 function keypress(event) {
     if (!gamestarted && event.key === 'Enter' && !game_restarted) {
         start();
         gamestarted = true;
     }
 
-    //change direction immediately
+    // Change direction immediately
     {
     switch (event.key) {
         case 'ArrowUp':
@@ -227,9 +229,8 @@ function keypress(event) {
     }
 }
 
-reset.style.visibility = 'hidden'; 
 
-//reset game
+reset.style.visibility = 'hidden'; 
 function resetGame() {
     snake = [{ x: 10, y: 10 }];
     gamestarted = false;
