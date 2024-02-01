@@ -10,14 +10,14 @@ function sleep(ms) {
   }
 //define variables of game
 const gridSize = 20;
-let delay = 200;
+let delay = 100;
 let snake = [{ x: 10, y: 10 }];
 let gamestarted = false;
 let gameover = false;
 let direction;
 let apples = 0;
 let score = 0;
-const game_delay = 200;
+const game_delay = 100;
 let game_restarted = false;
 
 //drawing all things
