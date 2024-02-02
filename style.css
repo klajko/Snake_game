@@ -40,6 +40,7 @@ body {
     border: none;
     font-weight: 900;
     top: 60%;
+    right: 45%;
     color: rgb(0, 0, 0);
     background-color:#767676 ;
     width: 50x;
@@ -55,6 +56,7 @@ body {
   #over {
     position: absolute;
     top: 40%;
+    right: 40%;
     color: red;
     width: 300px;
     text-align: center;
