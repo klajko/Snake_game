@@ -79,8 +79,6 @@ body {
     position: absolute;
   }
 
-
-
 .modal {
   position: fixed;
   top: 50%;
@@ -123,6 +121,12 @@ body {
 
 .modal-body {
   padding: 10px 15px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.title {
+  font-size: 37px;
 }
 
 #overlay {
