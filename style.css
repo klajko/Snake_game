@@ -27,6 +27,7 @@ body {
   #enter {
     position: absolute;
     top: 47%;
+    right: 40%;
     color: red;
     width: 300px;
     text-align: center;
